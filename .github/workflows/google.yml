@@ -46,6 +46,7 @@ jobs:
       with:
         token_format: 'access_token'
         credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+        service_account: 'github-action-sa@bootstrap-73bc.iam.gserviceaccount.com'
     # Alternative option - authentication via credentials json
     # - id: 'auth'
     #   uses: 'google-github-actions/auth@v0'
