@@ -22,28 +22,28 @@ spec:
   - http: 
       paths:
       - path: /apple
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: appleappservice
             port:
               number: 8000
       - path: /apple/profile
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: appleappservice
             port:
               number: 8000
       - path: /cat
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: catappservice
             port:
               number: 8000
       - path: /cat/profile
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: catappservice
