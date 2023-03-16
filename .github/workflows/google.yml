@@ -21,7 +21,7 @@ env:
   GAR_LOCATION: us-central1 
   GKE_CLUSTER: gke-cluster-auto
   GKE_ZONE: us-central1
-  DEPLOYMENT_NAME: appleApp # TODO: update to deployment name
+  DEPLOYMENT_NAME: apple-app # TODO: update to deployment name
   REPOSITORY:  container-repo 
   IMAGE_APPLE: appleapp
 
