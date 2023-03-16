@@ -3,17 +3,21 @@ from flask import Flask, abort, send_file
 app = Flask(__name__)
 image_dir = "./"
 
-# Define routes for different images
-@app.route('/cat/profile')
-def app_image():
-    image_name = "cat.jpg"
-    return display_image(image_name)
+
 
 # Define routes for different images
 @app.route('/cat')
 def appHome_image():
     image_name = "catHome.jpg"
     return display_image(image_name)
+
+# Define routes for different images
+@app.route('/cat/profile')
+def app_image():
+    image_name = "cat.jpg"
+    return display_image(image_name)
+
+
 
 # Helper function to retrieve and display an image from the local directory
 def display_image(image_name):
