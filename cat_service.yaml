@@ -6,9 +6,10 @@ kind: Service
 metadata:
   name: catappservice
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: cat
   ports:
   - port: 80
+    protocol: TCP
     targetPort: 8080

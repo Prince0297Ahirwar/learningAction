@@ -6,3 +6,4 @@ resources:
 - apple_service.yaml
 - cat_deployment.yaml
 - cat_service.yaml
+- external_ingress.yaml

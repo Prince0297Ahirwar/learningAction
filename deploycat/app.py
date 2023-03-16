@@ -4,13 +4,13 @@ app = Flask(__name__)
 image_dir = "./"
 
 # Define routes for different images
-@app.route('/cat')
+@app.route('/cat/profile')
 def app_image():
     image_name = "cat.jpg"
     return display_image(image_name)
 
 # Define routes for different images
-@app.route('/')
+@app.route('/cat')
 def appHome_image():
     image_name = "catHome.jpg"
     return display_image(image_name)
