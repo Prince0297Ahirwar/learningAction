@@ -12,7 +12,7 @@ def appHome_image():
     return display_image(image_name)
 
 # Define routes for different images
-@app.route('/cat/profile')
+@app.route('/catprofile')
 def app_image():
     image_name = "cat.jpg"
     return display_image(image_name)

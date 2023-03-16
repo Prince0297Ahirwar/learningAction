@@ -28,7 +28,7 @@ spec:
             name: appleappservice
             port:
               number: 8000
-      - path: /apple/profile
+      - path: /appleprofile
         pathType: Prefix
         backend:
           service:
@@ -42,7 +42,7 @@ spec:
             name: catappservice
             port:
               number: 8000
-      - path: /cat/profile
+      - path: /catprofile
         pathType: Prefix
         backend:
           service:
