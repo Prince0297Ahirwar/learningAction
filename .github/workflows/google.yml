@@ -6,7 +6,7 @@
 #
 # 2. Create and configure a Workload Identity Provider for GitHub (https://github.com/google-github-actions/auth#setting-up-workload-identity-federation)
 #
-# 3. Change the values for the GAR_LOCATION, GKE_ZONE, GKE_CLUSTER, IMAGE_APPLE, REPOSITORY and DEPLOYMENT_NAME environment variables (below).
+# 3. Change the values for the GAR_LOCATION, GKE_ZONE, GKE_CLUSTER, IMAGE_APPLE, REPOSITORY and DEPLOYMENT_NAME_APPLE environment variables (below).
 #
 # For more support on how to run the workflow, please visit https://github.com/google-github-actions/setup-gcloud/tree/master/example-workflows/gke-kustomize
 
@@ -21,9 +21,11 @@ env:
   GAR_LOCATION: us-central1 
   GKE_CLUSTER: gke-cluster-auto
   GKE_ZONE: us-central1
-  DEPLOYMENT_NAME: apple-app # TODO: update to deployment name
+  DEPLOYMENT_NAME_APPLE: apple-app # TODO: update to deployment name
+  DEPLOYMENT_NAME_CAT: cat-app
   REPOSITORY:  container-repo 
   IMAGE_APPLE: appleapp
+  IMAGE_CAT: catapp
 
 jobs:
   setup-build-publish-deploy:
@@ -78,10 +80,20 @@ jobs:
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
           ./deployapple
+    - name: Build cat image
+      run: |-
+        docker build \
+          --tag "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE_CAT:$GITHUB_SHA" \
+          --build-arg GITHUB_SHA="$GITHUB_SHA" \
+          --build-arg GITHUB_REF="$GITHUB_REF" \
+          ./deploycat
     # Push the Docker image to Google Artifact Registry
-    - name: Publish
+    - name: Publish apple image
       run: |-
         docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE_APPLE:$GITHUB_SHA"
+    - name: Publish cat image
+      run: |-
+        docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE_CAT:$GITHUB_SHA"
     # Set up kustomize
     - name: Set up Kustomize
       run: |-
@@ -91,7 +103,9 @@ jobs:
     - name: Deploy
       run: |-
         # replacing the image name in the k8s template
-        ./kustomize edit set image LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE_APPLE:$GITHUB_SHA
+        ./kustomize edit set image LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE_APPLE:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE_APPLE:$GITHUB_SHA
+        ./kustomize edit set image LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE_CAT:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE_CAT:$GITHUB_SHA
         ./kustomize build . | kubectl apply -f -
-        kubectl rollout status deployment/$DEPLOYMENT_NAME
+        kubectl rollout status deployment/$DEPLOYMENT_NAME_APPLE
+        kubectl rollout status deployment/$DEPLOYMENT_NAME_CAT
         kubectl get services -o wide

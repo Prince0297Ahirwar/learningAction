@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apple-app
+  name: cat-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: apple
+      app: cat
   template:
     metadata:
       labels:
-        app: apple
+        app: cat
     spec:
       containers:
-      - name: apple
-        image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE_APPLE:TAG
+      - name: cat
+        image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE_CAT:TAG
         # This app listens on port 8080 for web traffic by default
         ports:
         - containerPort: 8080

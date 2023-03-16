@@ -4,3 +4,5 @@ resources:
 - Readme.md
 - apple_deployment.yaml
 - apple_service.yaml
+- cat_deployment.yaml
+- cat_service.yaml
