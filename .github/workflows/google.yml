@@ -23,7 +23,7 @@ env:
   GKE_ZONE: us-central1
   DEPLOYMENT_NAME: appleApp # TODO: update to deployment name
   REPOSITORY:  container-repo 
-  IMAGE_APPLE: APPLeapp
+  IMAGE_APPLE: appleapp
 
 jobs:
   setup-build-publish-deploy:
