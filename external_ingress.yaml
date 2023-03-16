@@ -27,11 +27,11 @@ spec:
           service:
             name: appleappservice
             port:
-              number: 8080
+              number: 8000
       - path: /cat
         pathType: ImplementationSpecific
         backend:
           service:
             name: catappservice
             port:
-              number: 8080
+              number: 8000
