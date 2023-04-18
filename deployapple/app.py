@@ -13,10 +13,6 @@ def appHome_image():
 
 
 # Define routes for different images
-@app.route('/appleprofile')
-def app_image():
-    image_name = "apple.jpg"
-    return display_image(image_name)
 
 
 # Helper function to retrieve and display an image from the local directory
