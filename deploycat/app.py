@@ -13,7 +13,7 @@ def appHome_image():
 
 # Define routes for different images
 
-
+#a little change
 
 # Helper function to retrieve and display an image from the local directory
 def display_image(image_name):
