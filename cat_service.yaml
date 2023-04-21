@@ -6,7 +6,7 @@ kind: Service
 metadata:
   name: catappservice
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: cat
   ports:
