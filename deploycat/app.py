@@ -6,7 +6,7 @@ image_dir = "./"
 
 
 # Define routes for different images
-@app.route('/cat')
+@app.route('/')
 def appHome_image():
     image_name = "catHome.jpg"
     return display_image(image_name)

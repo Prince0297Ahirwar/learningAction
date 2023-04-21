@@ -6,7 +6,7 @@ image_dir = "./"
 
 
 # Define routes for different images
-@app.route('/apple')
+@app.route('/')
 def appHome_image():
     image_name = "appleHome.jpg"
     return display_image(image_name)
