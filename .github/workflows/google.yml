@@ -18,9 +18,9 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GAR_LOCATION: asia-east1
+  GAR_LOCATION: us-central1 
   GKE_CLUSTER: gke-cluster-auto
-  GKE_ZONE: us-central1
+  GKE_ZONE: asia-east1
   DEPLOYMENT_NAME_APPLE: apple-app # TODO: update to deployment name
   DEPLOYMENT_NAME_CAT: cat-app
   REPOSITORY:  container-repo 
